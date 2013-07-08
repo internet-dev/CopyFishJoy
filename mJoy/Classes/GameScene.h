@@ -18,6 +18,9 @@ public:
     void menuCloseCallback(CCObject* pSender);
 
     CREATE_FUNC(GameScene);
+
+private:
+    void update(float delta);
 };
 
 #endif // __GAME_SCENE_H__

@@ -36,10 +36,10 @@ bool GameScene::init()
         // 1. Add a menu item with "X" image, which is clicked to quit the program.
         // Create a "close" menu item with close icon, it's an auto release object.
         CCMenuItemImage *pCloseItem = CCMenuItemImage::create(
-                                                              "CloseNormal.png",
-                                                              "CloseSelected.png",
-                                                              this,
-                                                              menu_selector(GameScene::menuCloseCallback));
+            "CloseNormal.png",
+            "CloseSelected.png",
+            this,
+            menu_selector(GameScene::menuCloseCallback));
         CC_BREAK_IF(! pCloseItem);
 
         this->windowSize = CCDirector::sharedDirector()->getWinSize();
@@ -54,12 +54,17 @@ bool GameScene::init()
         // Add the menu to HelloWorld layer as a child layer.
         this->addChild(pMenu, 1);
 
-
-		//this->schedule(schedule_selector(GameScene::updateFish), 1.0f);
+        /** schedule */
+        this->schedule(schedule_selector(GameScene::update), 1.0f);
         bRet = true;
     } while (0);
 
     return bRet;
+}
+
+void GameScene::update(float delta)
+{
+    CCLOG("GameScene::update->delte = %f", delta);
 }
 
 void GameScene::menuCloseCallback(CCObject* pSender)
