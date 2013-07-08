@@ -95,5 +95,6 @@ void HelloWorld::startGame(CCObject *pSender)
 {
     CCLOG("I will exec 'startGame'");
     CCScene *pScene = GameScene::scene();
-    CCDirector::sharedDirector()->replaceScene(pScene);
+    //CCDirector::sharedDirector()->replaceScene(pScene);
+    CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(1, pScene));
 }

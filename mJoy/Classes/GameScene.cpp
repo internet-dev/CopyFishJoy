@@ -54,12 +54,37 @@ bool GameScene::init()
         // Add the menu to HelloWorld layer as a child layer.
         this->addChild(pMenu, 1);
 
+        /** 开启触控 */
+        this->setTouchEnabled(true);
+        /** 批量加载资源 */
+        this->loadFrames();
+        /** 初始化基本 UI */
+        this->initUI();
+
         /** schedule */
         this->schedule(schedule_selector(GameScene::update), 1.0f);
         bRet = true;
     } while (0);
 
     return bRet;
+}
+
+void GameScene::loadFrames(void)
+{
+    CCLOG("GameScene::loadFrames(void)");
+    CCSpriteFrameCache *pFC = CCSpriteFrameCache::sharedSpriteFrameCache();
+    assert(NULL != pFC);
+
+    pFC->addSpriteFramesWithFile("fish.plist");
+    pFC->addSpriteFramesWithFile("fish2.plist");
+    pFC->addSpriteFramesWithFile("fish3.plist");
+    pFC->addSpriteFramesWithFile("fish4.plist");
+    pFC->addSpriteFramesWithFile("cannon.plist");
+}
+
+void GameScene::initUI(void)
+{
+    CCLOG("GameScene::initUI(void)");
 }
 
 void GameScene::update(float delta)
@@ -72,6 +97,7 @@ void GameScene::menuCloseCallback(CCObject* pSender)
     // "close" menu item clicked
     CCDirector::sharedDirector()->end();
 
+    /** ios 设备最好加上以下内容 */
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     exit(0);
 #endif
