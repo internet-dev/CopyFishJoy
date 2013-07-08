@@ -58,7 +58,7 @@ bool GameScene::init()
 		//this->schedule(schedule_selector(GameScene::updateFish), 1.0f);
         bRet = true;
     } while (0);
-    
+
     return bRet;
 }
 
