@@ -1,4 +1,5 @@
 #include "HelloWorldScene.h"
+#include "GameScene.h"
 #include "SimpleAudioEngine.h"
 
 using namespace cocos2d;
@@ -34,15 +35,22 @@ bool HelloWorld::init()
     //    you may modify it.
 
     // add a "close" icon to exit the progress. it's an autorelease object
+    CCSize winSize = CCDirector::sharedDirector()->getWinSize();
     CCMenuItemImage *pCloseItem = CCMenuItemImage::create(
                                         "CloseNormal.png",
                                         "CloseSelected.png",
                                         this,
                                         menu_selector(HelloWorld::menuCloseCallback) );
-    pCloseItem->setPosition( ccp(CCDirector::sharedDirector()->getWinSize().width - 20, 20) );
+    pCloseItem->setPosition( ccp(winSize.width - 20, 20) );
+
+    /** 菜单 */
+    CCLabelTTF *lablel = CCLabelTTF::create("Start Game", "RANDOM", 26.0f);
+    CCSize label_size = lablel->getContentSize();
+    CCMenuItemLabel *p_start_label = CCMenuItemLabel::create(lablel, this, menu_selector(HelloWorld::startGame));
+    p_start_label->setPosition(ccp(winSize.width - label_size.width * 0.5 - 5, 60));
 
     // create menu, it's an autorelease object
-    CCMenu* pMenu = CCMenu::create(pCloseItem, NULL);
+    CCMenu* pMenu = CCMenu::create(pCloseItem, p_start_label, NULL);
     pMenu->setPosition( CCPointZero );
     this->addChild(pMenu, 1);
 
@@ -81,4 +89,11 @@ void HelloWorld::menuCloseCallback(CCObject* pSender)
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     exit(0);
 #endif
+}
+
+void HelloWorld::startGame(CCObject *pSender)
+{
+    CCLOG("I will exec 'startGame'");
+    CCScene *pScene = GameScene::scene();
+    CCDirector::sharedDirector()->replaceScene(pScene);
 }
