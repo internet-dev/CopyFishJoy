@@ -30,6 +30,9 @@ bool GameScene::init()
     bool bRet = false;
     do
     {
+        /** 设置随机种子 */
+        srand(time(NULL));
+
         /* super init first */
         CC_BREAK_IF(! CCLayer::init());
 
