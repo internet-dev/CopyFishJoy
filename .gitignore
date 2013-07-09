@@ -1,0 +1,17 @@
+*.o
+*~
+*.swp
+*.swo
+*.dSYM
+a.out
+tags
+test
+t
+o
+.DS_Store
+mJoy/FishRes/*
+mJoy/Prefix.pch
+mJoy/Resources/*
+mJoy/ios/*
+mJoy/libs/*
+mJoy.xcodeproj

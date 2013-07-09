@@ -30,6 +30,10 @@ bool AppDelegate::applicationDidFinishLaunching()
     CCDirector *pDirector = CCDirector::sharedDirector();
     pDirector->setOpenGLView(CCEGLView::sharedOpenGLView());
 
+    /** 手工指定屏幕大小,经测试,不生效 */
+    //CCEGLView* eglView = CCEGLView::sharedOpenGLView();
+    //eglView->setFrameSize(720, 480);
+
     // turn on display FPS
     pDirector->setDisplayStats(true);
 

@@ -3,6 +3,8 @@
 
 #include "cocos2d.h"
 
+#define UI_LAYER_TAG 100
+
 class GameScene : public cocos2d::CCLayer
 {
 public:
