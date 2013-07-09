@@ -4,6 +4,8 @@
 using namespace cocos2d;
 using namespace std;
 
+static GameScene* instanceOfGameScene;
+
 CCScene* GameScene::scene()
 {
     CCScene * scene = NULL;
@@ -63,13 +65,23 @@ bool GameScene::init()
         this->loadFrames();
         /** 初始化基本 UI */
         this->initUI();
+        this->initNode();
 
         /** schedule */
-        this->schedule(schedule_selector(GameScene::update), 1.0f);
+        //this->schedule(schedule_selector(GameScene::update), 1.0f);
         bRet = true;
+
+        instanceOfGameScene = this;
     } while (0);
 
     return bRet;
+}
+
+GameScene *GameScene::sharedGameScene(void)
+{
+    assert(NULL != instanceOfGameScene);
+
+    return instanceOfGameScene;
 }
 
 void GameScene::loadFrames(void)
@@ -111,6 +123,11 @@ void GameScene::initUI(void)
     pBottomBar->setAnchorPoint(ccp(0.0f, 0.0f));
 	pBottomBar->setPosition(ccp(0.0f, 0.0f));
     this->addChild(pBottomBar, UI_LAYER_TAG);
+}
+
+void GameScene::initNode(void)
+{
+    CCLOG("GameScene::intNode(void)");
 }
 
 void GameScene::update(float delta)

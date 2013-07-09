@@ -20,7 +20,7 @@ typedef enum{
     FISH_GROUP_MERMAID,     /** 美人鱼 */
     FISH_GROUP_WHALE,       /** 鲸鱼 */
 
-    FISH_GROUP_COUNT        /** 组数目 */
+    FISH_GROUP_COUNT,       /** 组数目 */
 } FISH_GROUP_CONF;
 
 typedef struct _fish_conf_t
@@ -32,6 +32,7 @@ typedef struct _fish_conf_t
     float hit_rate;     /** 命中率 */
 } fish_conf_t;
 
+/** 类定义 */
 class GameScene;
 class Fish : public cocos2d::CCSprite
 {
