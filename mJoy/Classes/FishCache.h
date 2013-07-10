@@ -42,15 +42,18 @@ public:
     FishCache(void);
     ~FishCache(void);
 
-    cocos2d::CCSpriteBatchNode* SmallBatch;
-    cocos2d::CCSpriteBatchNode* NormalBatch;
-    cocos2d::CCSpriteBatchNode* MermaidBatch;
-    cocos2d::CCSpriteBatchNode* WhaleBatch;
+    cocos2d::CCSpriteBatchNode *SmallBatch;
+    cocos2d::CCSpriteBatchNode *NormalBatch;
+    cocos2d::CCSpriteBatchNode *MermaidBatch;
+    cocos2d::CCSpriteBatchNode *WhaleBatch;
 
-    cocos2d::CCSpriteBatchNode* Capture_SmallBatch;
-    cocos2d::CCSpriteBatchNode* Capture_NormalBatch;
-    cocos2d::CCSpriteBatchNode* Capture_MermaidBatch;
-    cocos2d::CCSpriteBatchNode* Capture_WhaleBatch;
+    /**
+     // 精灵可动态通过 sp->setDisplayFrame(CCSpriteFrame *pNewFrame) 来实现被捕的动画
+    cocos2d::CCSpriteBatchNode *Capture_SmallBatch;
+    cocos2d::CCSpriteBatchNode *Capture_NormalBatch;
+    cocos2d::CCSpriteBatchNode *Capture_MermaidBatch;
+    cocos2d::CCSpriteBatchNode *Capture_WhaleBatch;
+    */
 
 private:
     void initBatch(void);

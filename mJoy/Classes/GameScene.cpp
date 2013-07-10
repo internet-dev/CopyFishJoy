@@ -4,6 +4,8 @@
 using namespace cocos2d;
 using namespace std;
 
+// CC_DEGREES_TO_RADIANS()
+
 static GameScene* instanceOfGameScene;
 
 CCScene* GameScene::scene()
