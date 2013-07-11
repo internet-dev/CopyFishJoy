@@ -15,10 +15,14 @@
 #define FISH_TOTAL  30  /** 场景中可显示的鱼的最大数目 */
 
 /** 定义cache 数目 */
-#define FISH_SMALL_CACHE    10  /** 炮灰 */
-#define FISH_NORMAL_CACHE   5   /** 普通鱼类 */
-#define FISH_MERMAID_CACHE  5   /** 美人鱼 */
-#define FISH_WHALE_CACHE    5   /** 鲸鱼 */
+/** 炮灰 */
+#define FISH_SMALL_CACHE    10
+/** 普通鱼类 */
+#define FISH_NORMAL_CACHE   4
+/** 美人鱼 */
+#define FISH_MERMAID_CACHE  3
+/** 鲸鱼 */
+#define FISH_WHALE_CACHE    2
 
 /** 正常逻辑精灵缓存 */
 /**
@@ -42,7 +46,8 @@ public:
     FishCache(void);
     ~FishCache(void);
 
-    CC_SYNTHESIZE(cocos2d::CCArray *, m_pFishes, fishes);
+    //CC_SYNTHESIZE(cocos2d::CCArray *, m_pFishes, fishes);
+    static void spawnFish(FishCache *fish_cache);
 
     cocos2d::CCArray *SmallBatch;
     cocos2d::CCArray *NormalBatch;

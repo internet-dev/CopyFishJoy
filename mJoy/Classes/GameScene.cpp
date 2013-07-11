@@ -41,6 +41,7 @@ bool GameScene::init()
 
         /* super init first */
         CC_BREAK_IF(! CCLayer::init());
+        instanceOfGameScene = this;
 
         // 1. Add a menu item with "X" image, which is clicked to quit the program.
         // Create a "close" menu item with close icon, it's an auto release object.
@@ -77,10 +78,9 @@ bool GameScene::init()
         this->initGame();
 
         /** schedule */
-        //this->schedule(schedule_selector(GameScene::update), 1.0f);
-        bRet = true;
+        this->schedule(schedule_selector(GameScene::update), 0.5f);
 
-        instanceOfGameScene = this;
+        bRet = true;
     } while (0);
 
     return bRet;
@@ -164,13 +164,17 @@ void GameScene::initGame(void)
     CCLOG("GameScene::intGame(void)");
 
     FishCache *fish_cache = new FishCache();
-    fish_cache->setPosition(ccp(350, 260));
-    this->addChild(fish_cache, UI_LAYER_TAG, GameSceneNodeTagFish);
+    this->addChild(fish_cache, GAME_LAYER_TAG, GameSceneNodeTagFish);
 }
 
 void GameScene::update(float delta)
 {
     CCLOG("GameScene::update->delte = %f", delta);
+
+    CCNode *node_cache = this->getChildByTag(GameSceneNodeTagFish);
+
+    FishCache *fish_cache = (FishCache *)node_cache;
+    FishCache::spawnFish(fish_cache);
 }
 
 void GameScene::menuCloseCallback(CCObject* pSender)

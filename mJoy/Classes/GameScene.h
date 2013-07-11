@@ -3,7 +3,8 @@
 
 #include "cocos2d.h"
 
-#define UI_LAYER_TAG 100
+#define UI_LAYER_TAG    100
+#define GAME_LAYER_TAG  10
 
 typedef enum
 {
