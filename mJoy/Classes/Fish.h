@@ -37,8 +37,8 @@ class GameScene;
 class Fish : public cocos2d::CCSprite
 {
 public:
-	Fish(void);
-	~Fish(void);
+    Fish(void);
+    ~Fish(void);
 
     /** 静态初始鱼配置 */
     static void initFishConf(void);

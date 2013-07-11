@@ -147,15 +147,15 @@ void GameScene::initUI(void)
     /** top bar */
     texture = pSTC->addImage("ui_box_01.png");
     CCSprite *pTopBar = CCSprite::createWithTexture(texture);
-	pTopBar->setAnchorPoint(ccp(0.5f, 1.0f));
-	pTopBar->setPosition(ccp((this->windowSize.width * 0.5f), (this->windowSize.height)));
+    pTopBar->setAnchorPoint(ccp(0.5f, 1.0f));
+    pTopBar->setPosition(ccp((this->windowSize.width * 0.5f), (this->windowSize.height)));
     this->addChild(pTopBar, UI_LAYER_TAG);
 
     /** 底栏静态 UI 图 */
     texture = pSTC->addImage("ui_box_02.png");
     CCSprite *pBottomBar = CCSprite::createWithTexture(texture);
     pBottomBar->setAnchorPoint(ccp(0.0f, 0.0f));
-	pBottomBar->setPosition(ccp(0.0f, 0.0f));
+    pBottomBar->setPosition(ccp(0.0f, 0.0f));
     this->addChild(pBottomBar, UI_LAYER_TAG);
 }
 

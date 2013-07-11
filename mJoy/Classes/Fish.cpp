@@ -13,6 +13,11 @@
  */
 static fish_conf_t fish_conf[FISH_GROUP_COUNT];
 
+/**
+    鱼的贝赛尔路径
+    TODO
+ */
+
 using namespace cocos2d;
 Fish::Fish(void)
 {
@@ -22,9 +27,10 @@ Fish::Fish(void)
 
 Fish::~Fish(void)
 {
-	CCLog("release fish Fish::~Fish(void)");
+    CCLog("release fish Fish::~Fish(void)");
 }
 
+/** 静态方法,主场景中初始化 */
 void Fish::initFishConf(void)
 {
     /** 炮灰 */
