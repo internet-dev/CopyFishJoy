@@ -162,7 +162,10 @@ void GameScene::initUI(void)
 void GameScene::initGame(void)
 {
     CCLOG("GameScene::intGame(void)");
-    //FishCache *fish_cache = new FishCache();
+
+    FishCache *fish_cache = new FishCache();
+    fish_cache->setPosition(ccp(350, 260));
+    this->addChild(fish_cache, UI_LAYER_TAG, GameSceneNodeTagFish);
 }
 
 void GameScene::update(float delta)

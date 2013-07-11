@@ -47,6 +47,7 @@ public:
     /** 成员属性 */
     int group_id;   /** 所在分组,具有同样的属性 */
     int fish_id;    /** 在资源中的编号 */
+    cocos2d::CCSprite *fish_sprite;
 };
 
 #endif /* defined(__Fish__) */

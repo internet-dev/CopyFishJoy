@@ -44,10 +44,10 @@ public:
 
     CC_SYNTHESIZE(cocos2d::CCArray *, m_pFishes, fishes);
 
-    cocos2d::CCSpriteBatchNode *SmallBatch;
-    cocos2d::CCSpriteBatchNode *NormalBatch;
-    cocos2d::CCSpriteBatchNode *MermaidBatch;
-    cocos2d::CCSpriteBatchNode *WhaleBatch;
+    cocos2d::CCArray *SmallBatch;
+    cocos2d::CCArray *NormalBatch;
+    cocos2d::CCArray *MermaidBatch;
+    cocos2d::CCArray *WhaleBatch;
 
     cocos2d::CCSize windowSize;
 

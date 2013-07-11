@@ -19,11 +19,11 @@ static fish_conf_t fish_conf[FISH_GROUP_COUNT];
  */
 
 using namespace cocos2d;
+
 Fish::Fish(void)
 {
     CCLOG("create fish -> Fish::Fish(void)");
 }
-
 
 Fish::~Fish(void)
 {
