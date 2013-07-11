@@ -6,6 +6,7 @@
 //
 //
 
+#include "Fish.h"
 #include "FishCache.h"
 
 /** 配置不容许运行时修改 */
@@ -14,7 +15,10 @@ const int g_normal_id_conf[]  = {10, 18};
 const int g_mermaid_id_conf[] = {11, 12};
 const int g_whale_id_conf[]   = {16, 17};
 
-// CC_DEGREES_TO_RADIANS
+/**
+ 全局场景中显示的鱼的个数
+ */
+int g_fish_current_total = 0;
 
 using namespace cocos2d;
 
@@ -151,9 +155,54 @@ void FishCache::spawnFish(FishCache *fish_cache)
     assert(NULL != fish_cache);
     CCLOG("FishCache::spawnFish(void)");
 
-    CCArray *fish_array = (CCArray *)fish_cache->NormalBatch;
-    CCLOG("count(fish_cache->NormalBatch) = %d", fish_array->count());
+    //CCArray *fish_array = (CCArray *)fish_cache->NormalBatch;
+    //CCLOG("count(fish_cache->NormalBatch) = %d", fish_array->count());
 
     //Fish *fish = (Fish *)fish_cache->NormalBatch->objectAtIndex(0);
     //CCLOG("fish->group_id: %d, fish_id: %d", fish->group_id, fish->fish_id);
+
+    CCArray *fish_group[FISH_GROUP_COUNT] = {
+        (CCArray *)fish_cache->SmallBatch,
+        (CCArray *)fish_cache->NormalBatch,
+        (CCArray *)fish_cache->MermaidBatch,
+        (CCArray *)fish_cache->WhaleBatch,
+    };
+
+    int retry_num = 0;
+
+    while (g_fish_current_total < FISH_TOTAL)
+    {
+        if (retry_num >= SPAWN_RETRY_NUM)
+        {
+            break;
+        }
+
+        float rate = (float)(rand() % 10000) * 0.01;
+        for (int i = 0; i < FISH_GROUP_COUNT; i++)
+        {
+            /** 按概率出 */
+            if (fish_conf[i].show_rate < rate )
+            {
+                continue;
+            }
+
+            int count = fish_group[i]->count();
+            for (int index = 0; index < count; index++)
+            {
+                Fish *fish = (Fish *)fish_group[i]->objectAtIndex(index);
+                //CCLOG("fish->group_id: %d, fish_id: %d", fish->group_id, fish->fish_id);
+                CCSprite *fish_sprite = fish->fish_sprite;
+                if (fish_sprite->isVisible())
+                {
+                    continue;
+                }
+
+                /** 产生鱼,设置动作,并将全局记数器加 1 */
+            }
+        }
+
+        /** 重试次数还没有选到鱼则放弃 */
+        retry_num++;
+    }
+
 }

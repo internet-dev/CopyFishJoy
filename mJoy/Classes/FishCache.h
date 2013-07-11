@@ -10,9 +10,11 @@
 #define __FishCache__
 
 #include "cocos2d.h"
-#include "Fish.h"
 
-#define FISH_TOTAL  30  /** 场景中可显示的鱼的最大数目 */
+#define STR_BUF_LEN         1024
+/** 场景中可显示的鱼的最大数目 */
+#define FISH_TOTAL          30
+#define SPAWN_RETRY_NUM     3
 
 /** 定义cache 数目 */
 /** 炮灰 */

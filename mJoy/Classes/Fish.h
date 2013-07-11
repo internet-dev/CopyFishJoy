@@ -32,6 +32,8 @@ typedef struct _fish_conf_t
     float hit_rate;     /** 命中率 */
 } fish_conf_t;
 
+extern fish_conf_t fish_conf[FISH_GROUP_COUNT];
+
 /** 类定义 */
 class GameScene;
 class Fish : public cocos2d::CCSprite

@@ -1,6 +1,7 @@
 #include "GameScene.h"
 #include "SimpleAudioEngine.h"
 
+#include "Fish.h"
 #include "FishCache.h"
 
 using namespace cocos2d;

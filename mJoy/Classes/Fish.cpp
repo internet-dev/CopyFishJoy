@@ -11,7 +11,7 @@
 /**
     鱼的配置
  */
-static fish_conf_t fish_conf[FISH_GROUP_COUNT];
+fish_conf_t fish_conf[FISH_GROUP_COUNT];
 
 /**
     鱼的贝赛尔路径
