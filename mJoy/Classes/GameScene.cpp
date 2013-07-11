@@ -1,6 +1,8 @@
 #include "GameScene.h"
 #include "SimpleAudioEngine.h"
 
+#include "FishCache.h"
+
 using namespace cocos2d;
 using namespace std;
 
@@ -65,9 +67,14 @@ bool GameScene::init()
         this->setTouchEnabled(true);
         /** 批量加载资源 */
         this->loadFrames();
+        this->loadSource();
         /** 初始化基本 UI */
         this->initUI();
-        this->initNode();
+
+        /** 初始化配置 */
+        Fish::initFishConf();
+
+        this->initGame();
 
         /** schedule */
         //this->schedule(schedule_selector(GameScene::update), 1.0f);
@@ -99,6 +106,31 @@ void GameScene::loadFrames(void)
     pFC->addSpriteFramesWithFile("cannon.plist");
 }
 
+void GameScene::loadSource(void)
+{
+    CCLOG("GameScene::loadSource(void)");
+
+    CCTexture2D *texture = NULL;
+    cocos2d::CCSpriteBatchNode *node = NULL;
+    CCTextureCache *pSTC = CCTextureCache::sharedTextureCache();
+
+    texture = pSTC->addImage("fish.png");
+    node    = CCSpriteBatchNode::createWithTexture(texture);
+    this->addChild(node, UI_LAYER_TAG, SourceNodeTagFish01);
+
+    texture = pSTC->addImage("fish2.png");
+    node    = CCSpriteBatchNode::createWithTexture(texture);
+    this->addChild(node, UI_LAYER_TAG, SourceNodeTagFish02);
+
+    texture = pSTC->addImage("fish3.png");
+    node    = CCSpriteBatchNode::createWithTexture(texture);
+    this->addChild(node, UI_LAYER_TAG, SourceNodeTagFish03);
+
+    texture = pSTC->addImage("fish4.png");
+    node    = CCSpriteBatchNode::createWithTexture(texture);
+    this->addChild(node, UI_LAYER_TAG, SourceNodeTagFish04);
+}
+
 void GameScene::initUI(void)
 {
     CCLOG("GameScene::initUI(void)");
@@ -127,9 +159,10 @@ void GameScene::initUI(void)
     this->addChild(pBottomBar, UI_LAYER_TAG);
 }
 
-void GameScene::initNode(void)
+void GameScene::initGame(void)
 {
-    CCLOG("GameScene::intNode(void)");
+    CCLOG("GameScene::intGame(void)");
+    //FishCache *fish_cache = new FishCache();
 }
 
 void GameScene::update(float delta)

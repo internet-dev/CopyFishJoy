@@ -2,7 +2,6 @@
 #define __GAME_SCENE_H__
 
 #include "cocos2d.h"
-#include "FishCache.h"
 
 #define UI_LAYER_TAG 100
 
@@ -13,6 +12,14 @@ typedef enum
     GameSceneNodeTagNet,
     GameSceneNodeTagCoin,
 } GameSceneNodeTags;
+
+typedef enum
+{
+    SourceNodeTagFish01 = 111,
+    SourceNodeTagFish02,
+    SourceNodeTagFish03,
+    SourceNodeTagFish04,
+} SourceNodeTags;
 
 class GameScene : public cocos2d::CCLayer
 {
@@ -35,15 +42,17 @@ public:
     void menuCloseCallback(CCObject* pSender);
 
     CREATE_FUNC(GameScene);
+    // CC_SYNTHESIZE
     /** } */
 
 private:
     /** 批量加载资源 */
     void loadFrames(void);
+    void loadSource(void);
     /** 初始化静态 UI */
     void initUI(void);
     /** 创建游戏节点 */
-    void initNode(void);
+    void initGame(void);
     /** 游戏更新 */
     void update(float delta);
 };
