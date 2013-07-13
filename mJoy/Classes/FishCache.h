@@ -26,6 +26,18 @@
 /** 鲸鱼 */
 #define FISH_WHALE_CACHE    2
 
+#define SPRITE_OFFSET       90
+#define PATH_CONF_TOTAL     17
+
+typedef struct _bezier_t
+{
+    cocos2d::CCPoint start_pos;
+    cocos2d::CCPoint control_pos;
+    cocos2d::CCPoint end_pos;
+    float start_angle;
+    float end_angle;
+} bezier_t;
+
 /** 正常逻辑精灵缓存 */
 /**
  GSNT_SmallSpriteBatch = 1,
