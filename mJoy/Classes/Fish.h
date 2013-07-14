@@ -47,6 +47,7 @@ typedef struct _bezier_t
 } bezier_t;
 
 extern fish_conf_t fish_conf[FISH_GROUP_COUNT];
+extern int g_fish_current_total;
 
 /** 类定义 */
 class GameScene;
@@ -60,6 +61,8 @@ public:
     static void initFishConf(void);
 
     static void spawnOneFish(Fish *fish);
+
+    void hideSelf(CCNode *sender);
 
     //CC_SYNTHESIZE(GameScene *, m_pgameScene, gameScene);
     /** 成员属性 */

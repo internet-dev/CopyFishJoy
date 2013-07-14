@@ -14,13 +14,18 @@
 fish_conf_t fish_conf[FISH_GROUP_COUNT];
 
 /**
+ 全局场景中显示的鱼的个数
+ */
+int g_fish_current_total = 0;
+
+/**
     鱼的贝赛尔路径
     TODO
  */
 /** 鱼路径配置 */
 const bezier_t g_path_config[PATH_CONF_TOTAL] = {
     /** 0 左到右(偏上) */
-    {ccp(-200, 100), ccp(240, 320), ccp(560, 240), 150, 190},
+    {ccp(-200, 100), ccp(560, 280), ccp(1152, 460), 150, 190},
     /** 1 左到右(偏下) */
     {ccp(-200, -100), ccp(240, 320), ccp(560, 120), 125, 200},
     /** 2 左下到右下 */
@@ -72,7 +77,7 @@ void Fish::initFishConf(void)
 {
     /** 炮灰 */
     fish_conf[FISH_GROUP_SMALL].value     = 1;  /** 只值一个金币 */
-    fish_conf[FISH_GROUP_SMALL].speed     = 9.5f;
+    fish_conf[FISH_GROUP_SMALL].speed     = 10.5f;
     fish_conf[FISH_GROUP_SMALL].show_rate = 82.6f;
     fish_conf[FISH_GROUP_SMALL].hit_rate  = 27.1f;
 
@@ -118,6 +123,8 @@ void Fish::spawnOneFish(Fish *fish)
 
     /** 路径 */
     int index = rand() % PATH_CONF_TOTAL;
+    // debug path
+    index = 0;
     CCPoint start_pos   = g_path_config[index].start_pos;
     CCPoint control_pos = g_path_config[index].control_pos;
     CCPoint end_pos     = g_path_config[index].end_pos;
@@ -143,11 +150,18 @@ void Fish::spawnOneFish(Fish *fish)
     CCBezierTo *actionMove   = CCBezierTo::create(time, bezier);
     CCRotateTo *actionRotate = CCRotateTo::create(time, end_angle);
     CCActionInterval *action = CCSpawn::create(actionMove, actionRotate, NULL);
-    CCSequence  *actionSequence = CCSequence::create(action, NULL);
+    /** 完成预订动作将自己设置为不可见 */
+    CCFiniteTimeAction *callFunc = CCCallFuncN::create(fish, callfuncN_selector(Fish::hideSelf));
+    CCSequence  *actionSequence = CCSequence::create(action, callFunc, NULL);
     fish->fish_sprite->runAction(actionSequence);
 }
 
-
+void Fish::hideSelf(CCNode *sender)
+{
+    CCSprite *fish_sprite = (Fish *)sender;
+    fish_sprite->setVisible(false);
+    g_fish_current_total--;
+}
 
 
 

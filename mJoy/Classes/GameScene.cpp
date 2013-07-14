@@ -54,6 +54,7 @@ bool GameScene::init()
         CC_BREAK_IF(! pCloseItem);
 
         this->windowSize = CCDirector::sharedDirector()->getWinSize();
+        CCLOG("window_size: {width: %f, height: %f}", this->windowSize.width, this->windowSize.height);
         // Place the menu item bottom-right conner.
         pCloseItem->setPosition(ccp(this->windowSize.width - 20, 20));
 
