@@ -10,7 +10,7 @@
 
 #include "cocos2d.h"
 
-#define SPRITE_OFFSET       90
+#define SPRITE_OFFSET       0
 #define PATH_CONF_TOTAL     17
 #define FISH_FRAMES_NUMBER  10
 

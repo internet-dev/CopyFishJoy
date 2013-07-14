@@ -72,22 +72,22 @@ void Fish::initFishConf(void)
 {
     /** 炮灰 */
     fish_conf[FISH_GROUP_SMALL].value     = 1;  /** 只值一个金币 */
-    fish_conf[FISH_GROUP_SMALL].speed     = 3.5f;
+    fish_conf[FISH_GROUP_SMALL].speed     = 9.5f;
     fish_conf[FISH_GROUP_SMALL].show_rate = 82.6f;
     fish_conf[FISH_GROUP_SMALL].hit_rate  = 27.1f;
 
     fish_conf[FISH_GROUP_NORMAL].value     = 5;
-    fish_conf[FISH_GROUP_NORMAL].speed     = 5.1f;
+    fish_conf[FISH_GROUP_NORMAL].speed     = 11.1f;
     fish_conf[FISH_GROUP_NORMAL].show_rate = 61.7f;
     fish_conf[FISH_GROUP_NORMAL].hit_rate  = 13.3f;
 
     fish_conf[FISH_GROUP_MERMAID].value     = 50;
-    fish_conf[FISH_GROUP_MERMAID].speed     = 9.1f;
+    fish_conf[FISH_GROUP_MERMAID].speed     = 15.5f;
     fish_conf[FISH_GROUP_MERMAID].show_rate = 31.7f;
     fish_conf[FISH_GROUP_MERMAID].hit_rate  = 11.1f;
 
     fish_conf[FISH_GROUP_WHALE].value     = 100;
-    fish_conf[FISH_GROUP_WHALE].speed     = 17.1f;
+    fish_conf[FISH_GROUP_WHALE].speed     = 19.9f;
     fish_conf[FISH_GROUP_WHALE].show_rate = 11.7f;
     fish_conf[FISH_GROUP_WHALE].hit_rate  = 7.7f;
 }
@@ -99,6 +99,7 @@ void Fish::spawnOneFish(Fish *fish)
     fish->fish_sprite->stopAllActions();
     fish->fish_sprite->setVisible(true);
 
+    /** 游动 */
     CCArray *fish_frames = CCArray::create();
     for(int i = 1; i <= FISH_FRAMES_NUMBER; i++)
     {
@@ -114,4 +115,40 @@ void Fish::spawnOneFish(Fish *fish)
     CCAnimate *animate = CCAnimate::create(animation);
     CCAction *swing = CCRepeatForever::create(animate);
     fish->fish_sprite->runAction(swing);
+
+    /** 路径 */
+    int index = rand() % PATH_CONF_TOTAL;
+    CCPoint start_pos   = g_path_config[index].start_pos;
+    CCPoint control_pos = g_path_config[index].control_pos;
+    CCPoint end_pos     = g_path_config[index].end_pos;
+    float start_angle = g_path_config[index].start_angle - SPRITE_OFFSET;
+    float end_angle   = g_path_config[index].end_angle - SPRITE_OFFSET;
+    float time = fish_conf[fish->group_id].speed + rand() % 10;
+
+    int x_offset = rand() % 100 -50;
+    int y_offset = rand() % 100 -50;
+
+    CCPoint s_pos = ccp(start_pos.x + x_offset, start_pos.y + y_offset);
+    CCPoint e_pos = ccp(end_pos.x + rand() % 50 - 25, end_pos.y + rand() % 50 - 25);
+    CCPoint c_pos = ccp(control_pos.x + x_offset, control_pos.y + y_offset);
+
+    fish->fish_sprite->setPosition(s_pos);
+    fish->fish_sprite->setRotation(start_angle);
+
+    ccBezierConfig bezier;
+    bezier.controlPoint_1 = s_pos;
+    bezier.controlPoint_2 = c_pos;
+    bezier.endPosition    = e_pos;
+
+    CCBezierTo *actionMove   = CCBezierTo::create(time, bezier);
+    CCRotateTo *actionRotate = CCRotateTo::create(time, end_angle);
+    CCActionInterval *action = CCSpawn::create(actionMove, actionRotate, NULL);
+    CCSequence  *actionSequence = CCSequence::create(action, NULL);
+    fish->fish_sprite->runAction(actionSequence);
 }
+
+
+
+
+
+
