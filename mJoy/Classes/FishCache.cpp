@@ -15,44 +15,6 @@ const int g_normal_id_conf[]  = {10, 18};
 const int g_mermaid_id_conf[] = {11, 12};
 const int g_whale_id_conf[]   = {16, 17};
 
-/** 鱼路径配置 */
-const bezier_t path_config[PATH_CONF_TOTAL] = {
-    /** 0 左到右(偏上) */
-    {ccp(-200, 100), ccp(240, 320), ccp(560, 240), 150, 190},
-    /** 1 左到右(偏下) */
-    {ccp(-200, -100), ccp(240, 320), ccp(560, 120), 125, 200},
-    /** 2 左下到右下 */
-    {ccp(-100, -50), ccp(240, 320), ccp(560, -100), 110, 240},
-    /** 3 左上到右上 */
-    {ccp(-100, 330), ccp(-20, -100), ccp(550, 380), 270, 130},
-    /** 4 左下到右上 */
-    {ccp(50, -100), ccp(30, 350), ccp(500, 350), 78, 180},
-    /** 5 右到左(偏上)*/
-    {ccp(600, 100), ccp(300, 100), ccp(-100, 300), -20, 40},
-    /** 6 右到左 */
-    {ccp(550, 300), ccp(300, -50), ccp(-150, 160), -60, 25},
-    /** 7 右到左偏下 */
-    {ccp(600, 240), ccp(-20, 350), ccp(-150, -100), 10, -30},
-    /** 8 右下到左上 */
-    {ccp(500, -100), ccp(450, 350), ccp(-100, 350), 70, 20},
-    /** 9 上到下偏左 */
-    {ccp(400, 400), ccp(150, 420), ccp(100, -100), -20, -80},
-    /** 10 上到下偏右 */
-    {ccp(300, 400), ccp(600, 100), ccp(50, -100), -130, -35},
-    /** 11 上到下偏右 */
-    {ccp(50, 400), ccp(600, 150), ccp(250, -100), -160, -60},
-    /** 12 上到下偏左 */
-    {ccp(300, 550), ccp(-100, 100), ccp(100, -100), -50, -105},
-    /** 13 下到上 */
-    {ccp(25, -100), ccp(350, 200), ccp(100, 400), 150, 60},
-    /** 14 下到上 */
-    {ccp(200, -100), ccp(-200, 240), ccp(350, 400), 10, 160},
-    /** 15 下到上 */
-    {ccp(400, -100), ccp(500, 200), ccp(200, 400), 120, 40},
-    /** 16 下到上 */
-    {ccp(450, -100), ccp(-100, 200), ccp(260, 400), 0, 110},
-};
-
 /**
  全局场景中显示的鱼的个数
  */
@@ -169,7 +131,7 @@ void FishCache::initBatch(void)
                     CCLOG("@@@ batch_table[%d] is NULL @@@", i);
                 }
                 /** debug ues true */
-                fish->fish_sprite->setVisible(true);
+                fish->fish_sprite->setVisible(false);
 
                 /** 测试显示 */
                 CCPoint pos = ccp(rand() % (int)this->windowSize.width, rand() % (int)this->windowSize.height);
@@ -212,9 +174,10 @@ void FishCache::spawnFish(FishCache *fish_cache)
     {
         if (retry_num >= SPAWN_RETRY_NUM)
         {
-            break;
+            goto FINISH;
         }
 
+NEXT_FISH:
         float rate = (float)(rand() % 10000) * 0.01;
         for (int i = 0; i < FISH_GROUP_COUNT; i++)
         {
@@ -225,17 +188,25 @@ void FishCache::spawnFish(FishCache *fish_cache)
             }
 
             int count = fish_group[i]->count();
-            for (int index = 0; index < count; index++)
+            int index = rand() % count;
+            Fish *fish = (Fish *)fish_group[i]->objectAtIndex(index);
+            if (fish)
             {
-                Fish *fish = (Fish *)fish_group[i]->objectAtIndex(index);
                 //CCLOG("fish->group_id: %d, fish_id: %d", fish->group_id, fish->fish_id);
                 CCSprite *fish_sprite = fish->fish_sprite;
                 if (fish_sprite->isVisible())
                 {
-                    continue;
+                    retry_num = 0;
+                    goto NEXT_FISH;
                 }
 
                 /** 产生鱼,设置动作,并将全局记数器加 1 */
+                g_fish_current_total++;
+                Fish::spawnOneFish(fish);
+                CCLOG("[SpawnOneFish] fish->group_id: %d, fish_id: %d", fish->group_id, fish->fish_id);
+
+                retry_num = 0; /** 产生新鱼时需要将重试资料清 0 */
+                goto NEXT_FISH;
             }
         }
 
@@ -243,4 +214,6 @@ void FishCache::spawnFish(FishCache *fish_cache)
         retry_num++;
     }
 
+FINISH:
+    return;
 }

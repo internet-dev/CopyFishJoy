@@ -10,6 +10,9 @@
 
 #include "cocos2d.h"
 
+#define SPRITE_OFFSET       90
+#define PATH_CONF_TOTAL     17
+
 /**
  查看资源后,发现总共有 18 种不同类型的鱼类
  可以分为 4 个级别的鱼,同级别的属性值一样
@@ -32,6 +35,16 @@ typedef struct _fish_conf_t
     float hit_rate;     /** 命中率 */
 } fish_conf_t;
 
+/** 贝赛尔配置 */
+typedef struct _bezier_t
+{
+    cocos2d::CCPoint start_pos;
+    cocos2d::CCPoint control_pos;
+    cocos2d::CCPoint end_pos;
+    float start_angle;
+    float end_angle;
+} bezier_t;
+
 extern fish_conf_t fish_conf[FISH_GROUP_COUNT];
 
 /** 类定义 */
@@ -44,6 +57,8 @@ public:
 
     /** 静态初始鱼配置 */
     static void initFishConf(void);
+
+    static void spawnOneFish(Fish *fish);
 
     //CC_SYNTHESIZE(GameScene *, m_pgameScene, gameScene);
     /** 成员属性 */
