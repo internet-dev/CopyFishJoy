@@ -25,13 +25,13 @@ int g_fish_current_total = 0;
 /** 鱼路径配置 */
 const bezier_t g_path_config[PATH_CONF_TOTAL] = {
     /** 0 左到右(偏上) */
-    {ccp(-200, 100), ccp(560, 280), ccp(1152, 460), 150, 190},
+    {ccp(-200, 100), ccp(560, 380), ccp(1152, 460), 150, 190},
     /** 1 左到右(偏下) */
-    {ccp(-200, -100), ccp(240, 320), ccp(560, 120), 125, 200},
+    {ccp(-200, -100), ccp(340, 620), ccp(1152, 120), 125, 200},
     /** 2 左下到右下 */
-    {ccp(-100, -50), ccp(240, 320), ccp(560, -100), 110, 240},
+    {ccp(-100, -50), ccp(540, 720), ccp(1088, -128), 110, 240},
     /** 3 左上到右上 */
-    {ccp(-100, 330), ccp(-20, -100), ccp(550, 380), 270, 130},
+    {ccp(-162, 500), ccp(10, 26), ccp(1088, 680), 220, 150},
     /** 4 左下到右上 */
     {ccp(50, -100), ccp(30, 350), ccp(500, 350), 78, 180},
     /** 5 右到左(偏上)*/
@@ -124,7 +124,7 @@ void Fish::spawnOneFish(Fish *fish)
     /** 路径 */
     int index = rand() % PATH_CONF_TOTAL;
     // debug path
-    index = 0;
+    index = 3;
     CCPoint start_pos   = g_path_config[index].start_pos;
     CCPoint control_pos = g_path_config[index].control_pos;
     CCPoint end_pos     = g_path_config[index].end_pos;
