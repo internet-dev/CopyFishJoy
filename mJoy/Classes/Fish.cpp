@@ -33,21 +33,21 @@ const bezier_t g_path_config[PATH_CONF_TOTAL] = {
     /** 3 左上到右上 */
     {ccp(-162, 500), ccp(10, 26), ccp(1088, 680), 220, 150},
     /** 4 左下到右上 */
-    {ccp(50, -100), ccp(30, 350), ccp(500, 350), 78, 180},
+    {ccp(50, -100), ccp(50, 370), ccp(1024, 652), 78, 175},
     /** 5 右到左(偏上)*/
-    {ccp(600, 100), ccp(300, 100), ccp(-100, 300), -20, 40},
+    {ccp(1152, 560), ccp(512, 64), ccp(-100, 510), -45, 32},
     /** 6 右到左 */
-    {ccp(550, 300), ccp(300, -50), ccp(-150, 160), -60, 25},
+    {ccp(1152, 384), ccp(300, -50), ccp(-150, 160), -45, 25},
     /** 7 右到左偏下 */
-    {ccp(600, 240), ccp(-20, 350), ccp(-150, -100), 10, -30},
+    {ccp(1152, 660), ccp(628, 50), ccp(-150, 128), -32, -5},
     /** 8 右下到左上 */
-    {ccp(500, -100), ccp(450, 350), ccp(-100, 350), 70, 20},
+    {ccp(1152, -32), ccp(614, 384), ccp(-100, 614), 45, 20},
     /** 9 上到下偏左 */
-    {ccp(400, 400), ccp(150, 420), ccp(100, -100), -20, -80},
+    {ccp(640, 896), ccp(150, 420), ccp(128, -128), -37, -80},
     /** 10 上到下偏右 */
-    {ccp(300, 400), ccp(600, 100), ccp(50, -100), -130, -35},
+    {ccp(300, 896), ccp(600, 100), ccp(50, -128), -130, -35},
     /** 11 上到下偏右 */
-    {ccp(50, 400), ccp(600, 150), ccp(250, -100), -160, -60},
+    {ccp(896, 896), ccp(600, 150), ccp(890, -128), -60, -105},
     /** 12 上到下偏左 */
     {ccp(300, 550), ccp(-100, 100), ccp(100, -100), -50, -105},
     /** 13 下到上 */
@@ -77,7 +77,7 @@ void Fish::initFishConf(void)
 {
     /** 炮灰 */
     fish_conf[FISH_GROUP_SMALL].value     = 1;  /** 只值一个金币 */
-    fish_conf[FISH_GROUP_SMALL].speed     = 10.5f;
+    fish_conf[FISH_GROUP_SMALL].speed     = 13.5f;
     fish_conf[FISH_GROUP_SMALL].show_rate = 82.6f;
     fish_conf[FISH_GROUP_SMALL].hit_rate  = 27.1f;
 
@@ -124,7 +124,7 @@ void Fish::spawnOneFish(Fish *fish)
     /** 路径 */
     int index = rand() % PATH_CONF_TOTAL;
     // debug path
-    index = 3;
+    index = 11;
     CCPoint start_pos   = g_path_config[index].start_pos;
     CCPoint control_pos = g_path_config[index].control_pos;
     CCPoint end_pos     = g_path_config[index].end_pos;
