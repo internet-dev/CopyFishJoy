@@ -96,5 +96,22 @@ void Fish::spawnOneFish(Fish *fish)
 {
     assert(NULL != fish);
 
+    fish->fish_sprite->stopAllActions();
     fish->fish_sprite->setVisible(true);
+
+    CCArray *fish_frames = CCArray::create();
+    for(int i = 1; i <= FISH_FRAMES_NUMBER; i++)
+    {
+        CCString *frame_name = CCString::createWithFormat("fish%02d_%02d.png", fish->fish_id, i);
+        CCSpriteFrame *pFrame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(frame_name->getCString());
+        if(pFrame)
+        {
+            fish_frames->addObject(pFrame);
+        }
+    }
+    CCAnimation *animation = CCAnimation::createWithSpriteFrames(fish_frames, 0.2f);
+    animation->setRestoreOriginalFrame(false);
+    CCAnimate *animate = CCAnimate::create(animation);
+    CCAction *swing = CCRepeatForever::create(animate);
+    fish->fish_sprite->runAction(swing);
 }

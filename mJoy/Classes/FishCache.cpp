@@ -196,7 +196,6 @@ NEXT_FISH:
                 CCSprite *fish_sprite = fish->fish_sprite;
                 if (fish_sprite->isVisible())
                 {
-                    retry_num = 0;
                     goto NEXT_FISH;
                 }
 
@@ -205,7 +204,8 @@ NEXT_FISH:
                 Fish::spawnOneFish(fish);
                 CCLOG("[SpawnOneFish] fish->group_id: %d, fish_id: %d", fish->group_id, fish->fish_id);
 
-                retry_num = 0; /** 产生新鱼时需要将重试资料清 0 */
+                /** 产生新鱼时需要将重试资料清 0 */
+                retry_num = 0;
                 goto NEXT_FISH;
             }
         }
