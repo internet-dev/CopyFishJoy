@@ -49,15 +49,15 @@ const bezier_t g_path_config[PATH_CONF_TOTAL] = {
     /** 11 上到下偏右 */
     {ccp(896, 896), ccp(600, 150), ccp(890, -128), -60, -105},
     /** 12 上到下偏左 */
-    {ccp(300, 550), ccp(-100, 100), ccp(100, -100), -50, -105},
+    {ccp(1008, 896), ccp(-100, 100), ccp(100, -128), -35, -65},
     /** 13 下到上 */
-    {ccp(25, -100), ccp(350, 200), ccp(100, 400), 150, 60},
+    {ccp(25, -128), ccp(350, 400), ccp(952, 896), 93, 142},
     /** 14 下到上 */
-    {ccp(200, -100), ccp(-200, 240), ccp(350, 400), 10, 160},
+    {ccp(64, -128), ccp(-78, 386), ccp(1152, 737), 90, 172},
     /** 15 下到上 */
-    {ccp(400, -100), ccp(500, 200), ccp(200, 400), 120, 40},
+    {ccp(931, -128), ccp(870, 660), ccp(-128, 522), 90, 0},
     /** 16 下到上 */
-    {ccp(450, -100), ccp(-100, 200), ccp(260, 400), 0, 110},
+    {ccp(64, -128), ccp(16, 675), ccp(1152, 660), 90, 180},
 };
 
 using namespace cocos2d;
@@ -124,7 +124,7 @@ void Fish::spawnOneFish(Fish *fish)
     /** 路径 */
     int index = rand() % PATH_CONF_TOTAL;
     // debug path
-    index = 11;
+    //index = 16;
     CCPoint start_pos   = g_path_config[index].start_pos;
     CCPoint control_pos = g_path_config[index].control_pos;
     CCPoint end_pos     = g_path_config[index].end_pos;
