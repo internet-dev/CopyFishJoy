@@ -62,6 +62,7 @@ public:
 
     static void spawnOneFish(Fish *fish);
 
+    /** 回调函数不能加 static 修饰,否则报类型不兼容的错误 */
     void hideSelf(CCNode *sender);
 
     //CC_SYNTHESIZE(GameScene *, m_pgameScene, gameScene);
