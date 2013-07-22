@@ -50,6 +50,7 @@ public:
 
     //CC_SYNTHESIZE(cocos2d::CCArray *, m_pFishes, fishes);
     static void spawnFish(FishCache *fish_cache);
+    static void test(void);
 
     cocos2d::CCArray *SmallBatch;
     cocos2d::CCArray *NormalBatch;

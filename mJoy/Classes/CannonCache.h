@@ -9,7 +9,6 @@
 #ifndef __CannonCache__
 #define __CannonCache__
 
-#include <iostream>
 #include "cocos2d.h"
 
 /**
@@ -27,7 +26,6 @@ public:
 
     static void changeLevel(CannonCache *cannon_cache, char op_type);
     static void touchFollow(CannonCache *cannon_cache, cocos2d::CCPoint touch_pos);
-    static void test();
 
     int level;  // 1 - 7,按图片记数来标记
     /** 美术资源中炮有两套,只用其中之一 */

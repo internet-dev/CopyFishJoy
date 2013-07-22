@@ -44,13 +44,8 @@ void CannonCache::initBatch(void)
     }
 }
 
-void touchFollow(CannonCache *cannon_cache, CCPoint touch_pos)
+void CannonCache::touchFollow(CannonCache *cannon_cache, CCPoint touch_pos)
 {
     assert(NULL != cannon_cache);
     CCLOG("touch_pos: {x: %f, y: %f}", touch_pos.x, touch_pos.y);
-}
-
-void test(void)
-{
-    CCLOG("Just test");
 }

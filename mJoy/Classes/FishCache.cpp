@@ -212,3 +212,9 @@ NEXT_FISH:
 FINISH:
     return;
 }
+
+void FishCache::test(void)
+{
+    CCLOG("just test FishCache static function");
+}
+

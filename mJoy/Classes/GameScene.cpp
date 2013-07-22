@@ -214,5 +214,5 @@ void GameScene::touchEvent(CCPoint touch_pos)
     CCNode *node_cache = this->getChildByTag(GameSceneNodeTagCannon);
     CannonCache *cannon_cache = (CannonCache *)node_cache;
 
-    cannon_cache->test();
+    CannonCache::touchFollow(cannon_cache, touch_pos);
 }
