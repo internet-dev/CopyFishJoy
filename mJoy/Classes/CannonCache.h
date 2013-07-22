@@ -17,6 +17,8 @@
  数组记数从 0 开始,切记
  */
 #define CANNON_LEVEL_TOTAL  7
+#define CANNON_X            530.0f
+#define CANNON_Y            48.0f
 
 class CannonCache : public cocos2d::CCNode
 {
