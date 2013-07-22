@@ -3,6 +3,7 @@
 
 #include "Fish.h"
 #include "FishCache.h"
+#include "CannonCache.h"
 
 using namespace cocos2d;
 using namespace std;
@@ -131,6 +132,10 @@ void GameScene::loadSource(void)
     texture = pSTC->addImage("fish4.png");
     node    = CCSpriteBatchNode::createWithTexture(texture);
     this->addChild(node, UI_LAYER_TAG, SourceNodeTagFish04);
+
+    texture = pSTC->addImage("cannon.png");
+    node    = CCSpriteBatchNode::createWithTexture(texture);
+    this->addChild(node, UI_LAYER_TAG, SourceNodeTagCannon);
 }
 
 void GameScene::initUI(void)
@@ -167,6 +172,9 @@ void GameScene::initGame(void)
 
     FishCache *fish_cache = new FishCache();
     this->addChild(fish_cache, GAME_LAYER_TAG, GameSceneNodeTagFish);
+
+    CannonCache *cannon_cache = new CannonCache();
+    this->addChild(cannon_cache, OP_LAYER_TAG, GameSceneNodeTagCannon);
 }
 
 void GameScene::update(float delta)
@@ -188,4 +196,23 @@ void GameScene::menuCloseCallback(CCObject* pSender)
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     exit(0);
 #endif
+}
+
+void GameScene::ccTouchesEnded(cocos2d::CCSet *pTouches, cocos2d::CCEvent *pEvent)
+{
+    CCSetIterator it = pTouches->begin();
+    for (; it != pTouches->end(); it++)
+    {
+        CCTouch *pTouch = (CCTouch *)*it;
+        CCPoint location = CCDirector::sharedDirector()->convertToGL(pTouch->getLocationInView());
+        this->touchEvent(location);
+    }
+}
+
+void GameScene::touchEvent(CCPoint touch_pos)
+{
+    CCNode *node_cache = this->getChildByTag(GameSceneNodeTagCannon);
+    CannonCache *cannon_cache = (CannonCache *)node_cache;
+
+    cannon_cache->test();
 }

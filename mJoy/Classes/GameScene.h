@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 
+#define OP_LAYER_TAG    111
 #define UI_LAYER_TAG    100
 #define GAME_LAYER_TAG  10
 
@@ -20,6 +21,7 @@ typedef enum
     SourceNodeTagFish02,
     SourceNodeTagFish03,
     SourceNodeTagFish04,
+    SourceNodeTagCannon,
 } SourceNodeTags;
 
 class GameScene : public cocos2d::CCLayer
@@ -42,6 +44,9 @@ public:
     /** 关闭按钮 */
     void menuCloseCallback(CCObject* pSender);
 
+    /** 触控事件代理 */
+    virtual void ccTouchesEnded(cocos2d::CCSet *pTouches, cocos2d::CCEvent *pEvent);
+
     CREATE_FUNC(GameScene);
     // CC_SYNTHESIZE
     /** } */
@@ -56,6 +61,8 @@ private:
     void initGame(void);
     /** 游戏更新 */
     void update(float delta);
+
+    void touchEvent(cocos2d::CCPoint touch_pos);
 };
 
 #endif // __GAME_SCENE_H__
