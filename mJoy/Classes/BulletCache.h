@@ -21,6 +21,8 @@ public:
     cocos2d::CCArray *BulletBatch;
     cocos2d::CCSize windowSize;
 
+    static void shootBullet(BulletCache *bullet_cache, cocos2d::CCPoint touch_pos, int level);
+
 private:
     void initBatch(void);
 };

@@ -178,7 +178,7 @@ void GameScene::initGame(void)
     this->addChild(cannon_cache, OP_LAYER_TAG, GameSceneNodeTagCannon);
 
     BulletCache *bullet_cache = new BulletCache();
-    this->addChild(bullet_cache, OP_LAYER_TAG, GameSceneNodeTagBullet);
+    this->addChild(bullet_cache, GAME_LAYER_TAG, GameSceneNodeTagBullet);
 }
 
 void GameScene::update(float delta)
@@ -219,4 +219,9 @@ void GameScene::touchEvent(CCPoint touch_pos)
     CannonCache *cannon_cache = (CannonCache *)node_cache;
 
     CannonCache::touchFollow(cannon_cache, touch_pos);
+
+    node_cache = this->getChildByTag(GameSceneNodeTagBullet);
+    BulletCache *bullet_cache = (BulletCache *)node_cache;
+
+    BulletCache::shootBullet(bullet_cache, touch_pos, cannon_cache->level);
 }
