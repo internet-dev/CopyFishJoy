@@ -78,22 +78,22 @@ void Fish::initFishConf(void)
     /** 炮灰 */
     fish_conf[FISH_GROUP_SMALL].value     = 1;  /** 只值一个金币 */
     fish_conf[FISH_GROUP_SMALL].speed     = 13.5f;
-    fish_conf[FISH_GROUP_SMALL].show_rate = 82.6f;
+    fish_conf[FISH_GROUP_SMALL].show_rate = 40.0f;
     fish_conf[FISH_GROUP_SMALL].hit_rate  = 27.1f;
 
     fish_conf[FISH_GROUP_NORMAL].value     = 5;
     fish_conf[FISH_GROUP_NORMAL].speed     = 11.1f;
-    fish_conf[FISH_GROUP_NORMAL].show_rate = 61.7f;
+    fish_conf[FISH_GROUP_NORMAL].show_rate = 30.0f;
     fish_conf[FISH_GROUP_NORMAL].hit_rate  = 13.3f;
 
     fish_conf[FISH_GROUP_MERMAID].value     = 50;
     fish_conf[FISH_GROUP_MERMAID].speed     = 15.5f;
-    fish_conf[FISH_GROUP_MERMAID].show_rate = 31.7f;
+    fish_conf[FISH_GROUP_MERMAID].show_rate = 20.0f;
     fish_conf[FISH_GROUP_MERMAID].hit_rate  = 11.1f;
 
     fish_conf[FISH_GROUP_WHALE].value     = 100;
     fish_conf[FISH_GROUP_WHALE].speed     = 19.9f;
-    fish_conf[FISH_GROUP_WHALE].show_rate = 11.7f;
+    fish_conf[FISH_GROUP_WHALE].show_rate = 10.0f;
     fish_conf[FISH_GROUP_WHALE].hit_rate  = 7.7f;
 }
 

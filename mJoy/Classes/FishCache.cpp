@@ -169,11 +169,12 @@ void FishCache::spawnFish(FishCache *fish_cache)
     {
         if (retry_num >= SPAWN_RETRY_NUM)
         {
-            goto FINISH;
+            break;
         }
 
-NEXT_FISH:
-        float rate = (float)(rand() % 10000) * 0.01;
+        //float rate = (float)(rand() % 10000) * 0.01;
+        float rate = (float)(rand() % 100);
+        //CCLOG("[>rate<] = %f", rate);
         for (int i = 0; i < FISH_GROUP_COUNT; i++)
         {
             /** 按概率出 */
@@ -191,7 +192,7 @@ NEXT_FISH:
                 CCSprite *fish_sprite = fish->fish_sprite;
                 if (fish_sprite->isVisible())
                 {
-                    goto NEXT_FISH;
+                    continue;
                 }
 
                 /** 产生鱼,设置动作,并将全局记数器加 1 */
@@ -199,18 +200,15 @@ NEXT_FISH:
                 Fish::spawnOneFish(fish);
                 CCLOG("[SpawnOneFish] fish->group_id: %d, fish_id: %d", fish->group_id, fish->fish_id);
 
-                /** 产生新鱼时需要将重试资料清 0 */
+                /** 产生新鱼时需要将重试清 0 */
                 retry_num = 0;
-                goto NEXT_FISH;
+                break;
             }
         }
 
         /** 重试次数还没有选到鱼则放弃 */
         retry_num++;
     }
-
-FINISH:
-    return;
 }
 
 void FishCache::test(void)
