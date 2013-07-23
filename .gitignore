@@ -11,5 +11,7 @@ o
 .DS_Store
 mJoy/FishRes/*
 mJoy/Prefix.pch
+mJoy.xcodeproj/project.pbxproj
+mJoy.xcodeproj/project.xcworkspace/xcuserdata/hy0kl.xcuserdatad/UserInterfaceState.xcuserstate
 mJoy/Resources/*
 mJoy/libs/*
