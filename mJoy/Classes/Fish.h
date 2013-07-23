@@ -9,10 +9,7 @@
 #define __Fish__
 
 #include "cocos2d.h"
-
-#define SPRITE_OFFSET       0
-#define PATH_CONF_TOTAL     17
-#define FISH_FRAMES_NUMBER  10
+#include "GameConfig.h"
 
 /**
  查看资源后,发现总共有 18 种不同类型的鱼类

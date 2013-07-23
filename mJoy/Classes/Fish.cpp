@@ -82,17 +82,17 @@ void Fish::initFishConf(void)
     fish_conf[FISH_GROUP_SMALL].hit_rate  = 27.1f;
 
     fish_conf[FISH_GROUP_NORMAL].value     = 5;
-    fish_conf[FISH_GROUP_NORMAL].speed     = 11.1f;
+    fish_conf[FISH_GROUP_NORMAL].speed     = 15.1f;
     fish_conf[FISH_GROUP_NORMAL].show_rate = 30.0f;
     fish_conf[FISH_GROUP_NORMAL].hit_rate  = 13.3f;
 
     fish_conf[FISH_GROUP_MERMAID].value     = 50;
-    fish_conf[FISH_GROUP_MERMAID].speed     = 15.5f;
+    fish_conf[FISH_GROUP_MERMAID].speed     = 16.5f;
     fish_conf[FISH_GROUP_MERMAID].show_rate = 20.0f;
     fish_conf[FISH_GROUP_MERMAID].hit_rate  = 11.1f;
 
     fish_conf[FISH_GROUP_WHALE].value     = 100;
-    fish_conf[FISH_GROUP_WHALE].speed     = 19.9f;
+    fish_conf[FISH_GROUP_WHALE].speed     = 23.9f;
     fish_conf[FISH_GROUP_WHALE].show_rate = 10.0f;
     fish_conf[FISH_GROUP_WHALE].hit_rate  = 7.7f;
 }

@@ -10,15 +10,7 @@
 #define __CannonCache__
 
 #include "cocos2d.h"
-
-/**
- 炮的等级 1 - 7
- 对应的图片记数从 1 开始
- 数组记数从 0 开始,切记
- */
-#define CANNON_LEVEL_TOTAL  7
-#define CANNON_X            530.0f
-#define CANNON_Y            48.0f
+#include "GameConfig.h"
 
 class CannonCache : public cocos2d::CCNode
 {

@@ -2,27 +2,7 @@
 #define __GAME_SCENE_H__
 
 #include "cocos2d.h"
-
-#define OP_LAYER_TAG    111
-#define UI_LAYER_TAG    100
-#define GAME_LAYER_TAG  10
-
-typedef enum
-{
-    GameSceneNodeTagFish = 1,
-    GameSceneNodeTagCannon,
-    GameSceneNodeTagNet,
-    GameSceneNodeTagCoin,
-} GameSceneNodeTags;
-
-typedef enum
-{
-    SourceNodeTagFish01 = 111,
-    SourceNodeTagFish02,
-    SourceNodeTagFish03,
-    SourceNodeTagFish04,
-    SourceNodeTagCannon,
-} SourceNodeTags;
+#include "GameConfig.h"
 
 class GameScene : public cocos2d::CCLayer
 {
