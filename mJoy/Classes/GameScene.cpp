@@ -4,6 +4,7 @@
 #include "Fish.h"
 #include "FishCache.h"
 #include "CannonCache.h"
+#include "BulletCache.h"
 
 using namespace cocos2d;
 using namespace std;
@@ -175,6 +176,9 @@ void GameScene::initGame(void)
 
     CannonCache *cannon_cache = new CannonCache();
     this->addChild(cannon_cache, OP_LAYER_TAG, GameSceneNodeTagCannon);
+
+    BulletCache *bullet_cache = new BulletCache();
+    this->addChild(bullet_cache, OP_LAYER_TAG, GameSceneNodeTagBullet);
 }
 
 void GameScene::update(float delta)

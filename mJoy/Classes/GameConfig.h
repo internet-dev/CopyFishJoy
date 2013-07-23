@@ -18,6 +18,7 @@ typedef enum
 {
     GameSceneNodeTagFish = 1,
     GameSceneNodeTagCannon,
+    GameSceneNodeTagBullet,
     GameSceneNodeTagNet,
     GameSceneNodeTagCoin,
 } GameSceneNodeTags;
@@ -60,5 +61,8 @@ typedef enum
 #define CANNON_LEVEL_TOTAL  7
 #define CANNON_X            530.0f
 #define CANNON_Y            48.0f
+
+/** __BulletCache__ */
+#define BULLET_CACHE_NUMBER     15
 
 #endif
