@@ -72,19 +72,27 @@ void BulletCache::shootBullet(BulletCache *bullet_cache, cocos2d::CCPoint touch_
         bullet->setVisible(true);
 
         CCString *frameName = CCString::createWithFormat("bullet0%d.png", level);
-        CCSpriteFrame *frame=CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(frameName->getCString());
+        CCSpriteFrame *frame= CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(frameName->getCString());
         if (frame)
         {
             bullet->setDisplayFrame(frame);
         }
 
-        // 完成后隐藏 TODO
         CCMoveTo *moveto = CCMoveTo::create(1.0f, touch_pos);
-        bullet->runAction(moveto);
+        // 匀速
+        // CCSpeed* pSpeed= CCSpeed::create(pActionInterval, 1.5f); //1.5倍速运行
+        CCFiniteTimeAction *callFunc = CCCallFuncN::create(bullet, callfuncN_selector(BulletCache::hideBullet));
+        CCSequence  *actionSequence = CCSequence::create(moveto, callFunc, NULL);
+        bullet->runAction(actionSequence);
 
         break;
     }
 }
 
-
+void BulletCache::hideBullet(CCNode *sender)
+{
+    assert(NULL != sender);
+    CCSprite *bullet = (CCSprite *)sender;
+    bullet->setVisible(false);
+}
 

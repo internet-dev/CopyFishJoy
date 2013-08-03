@@ -22,6 +22,7 @@ public:
     cocos2d::CCSize windowSize;
 
     static void shootBullet(BulletCache *bullet_cache, cocos2d::CCPoint touch_pos, int level);
+    void hideBullet(CCNode *sender);
 
 private:
     void initBatch(void);
