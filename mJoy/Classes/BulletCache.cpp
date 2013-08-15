@@ -92,6 +92,7 @@ void BulletCache::shootBullet(BulletCache *bullet_cache, cocos2d::CCPoint touch_
 void BulletCache::hideBullet(CCNode *sender)
 {
     assert(NULL != sender);
+
     CCSprite *bullet = (CCSprite *)sender;
     bullet->setVisible(false);
 }
